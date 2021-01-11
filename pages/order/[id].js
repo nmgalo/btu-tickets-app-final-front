@@ -11,6 +11,11 @@ export default function OrderId({ ticketData }) {
       </Head>
       <Header />
       <div className="container">
+        <p>departure: {ticketData.departureTime}</p>
+        <p>arrival: {ticketData.arrivalTime}</p>
+        <p>vagon class: {ticketData.vagonClass}</p>
+        <p>train Model: {ticketData.trainModel}</p>
+        <p>price: {ticketData.price} GEL</p>
         <table>
           <tbody>
             {[...Array(ticketData.trainSeatsDimension[0])].map((_, index) => (
@@ -18,14 +23,6 @@ export default function OrderId({ ticketData }) {
                 {[...Array(ticketData.trainSeatsDimension[1])].map(
                   (_, column_index) => (
                     <td onClick={() => (window.location.href = "/order/seat/")}>
-                      {
-                        (seatData = ticketData.seatsData.find(
-                          (item) =>
-                            item.location[0] === index + 1 &&
-                            item.location[1] === column_index + 1
-                        ).isAvailable)
-                      }
-
                       <button
                         disabled={
                           !ticketData.seatsData.find(
