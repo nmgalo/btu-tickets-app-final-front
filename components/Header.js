@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 export default function Header() {
+  // const isUserAuth =  ? true : false;
   return (
     <header>
       <div className="container">
@@ -12,8 +13,8 @@ export default function Header() {
             <li>
               <Link href="/tickets">Tickets</Link>
             </li>
-            <li>
-              <Link href="/contact">Contact</Link>
+            <li className="auth">
+              <Link href="/login">Login</Link>
             </li>
           </ul>
         </nav>
@@ -39,6 +40,9 @@ export default function Header() {
         }
         ul li a {
           padding-left: 20px;
+        }
+        .auth {
+          float: left;
         }
       `}</style>
     </header>
