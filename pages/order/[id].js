@@ -77,7 +77,9 @@ export default function OrderId({ ticketData }) {
 }
 
 export async function getServerSideProps({ params }) {
-  const res = await fetch(`${process.env.BASE_URL}tickets/order/${params.id}`);
+  const res = await fetch(
+    `http://localhost:8000/api/v1/tickets/order/${params.id}`
+  );
   const ticketData = await res.json();
   return {
     props: {

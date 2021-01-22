@@ -29,7 +29,9 @@ export default function Home({ table }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(`${process.env.BASE_URL}tickets/stations/timetable`);
+  const res = await fetch(
+    `http://localhost:8000/api/v1/tickets/stations/timetable`
+  );
   const table = await res.json();
   return {
     props: {

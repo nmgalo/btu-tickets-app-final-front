@@ -16,7 +16,7 @@ export default function chooseSeat({ seatData }) {
 
 export async function getServerSideProps({ params }) {
   const res = await fetch(
-    `${process.env.BASE_URL}tickets/ordet/seat/${params.seatHashId}`
+    `http://localhost:8000/api/v1/tickets/ordet/seat/${params.seatHashId}`
   );
   const seatData = await res.json();
   return {
