@@ -41,6 +41,7 @@ export default function Login() {
             <input
               type="text"
               name="email"
+              placeholder="email"
               onChange={(it) => setEmail(it.target.value)}
               value={email}
             />
@@ -49,6 +50,7 @@ export default function Login() {
             <input
               type="password"
               name="password"
+              placeholder="password"
               onChange={(it) => setPassword(it.target.value)}
               value={password}
             />
