@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import Head from "next/head";
 import Header from "../../components/Header";
 
 export default function OrderId() {
-  const router = useRouter();
   const [ticketData, setTicketData] = useState([]);
   const [loading, setLoading] = useState(true);
 

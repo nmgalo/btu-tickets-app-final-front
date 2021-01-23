@@ -7,7 +7,10 @@ import Item from "../../components/ordering/Item";
 export default function Tickets() {
   const [orders, setOrders] = useState([]);
 
+  const [auth, setAuth] = useState(false);
+
   useEffect(() => {
+    setAuth(localStorage.getItem("token") ? true : false);
     fetch(
       `https://www.tickets-api.cloud.com.ge/api/v1/tickets/order-tickets/get-order-history`,
       {
@@ -18,10 +21,9 @@ export default function Tickets() {
     )
       .then((response) => response.json())
       .then((response) => {
-        if (response.error) {
-          // alert(response.error);
+        if (!response.error) {
+          setOrders(response);
         }
-        setOrders(response);
       });
   }, []);
 
@@ -32,7 +34,8 @@ export default function Tickets() {
       </Head>
       <Header />
       <div className="container">
-        {orders.length !== 0 && <Item orders={orders} />}
+        {auth && <Item orders={orders} />}
+        {!auth && <div>Please sign in first</div>}
       </div>
     </div>
   );
