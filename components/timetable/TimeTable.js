@@ -19,9 +19,9 @@ function TimeTable(props) {
         .timeTableContainer {
           width: 100%;
           margin-top: 40px;
-          // display: grid;
-          // grid-gap: 30px;
-          // grid-template-columns: repeat(3, 1fr);
+          display: grid;
+          grid-gap: 30px;
+          grid-template-columns: repeat(3, 1fr);
         }
         .timeTableContainer > div {
           width: 100%;

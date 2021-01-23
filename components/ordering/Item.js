@@ -12,7 +12,7 @@ function Item(props) {
           <span>{item.reservationDate}</span>
           <span>
             <a
-              href={`http://localhost:8000/ticket/preview/${item.orderId}`}
+              href={`https://www.tickets-api.cloud.com.ge/ticket/preview/${item.orderId}`}
               target="_blank"
             >
               view ticket

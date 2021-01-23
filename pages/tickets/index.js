@@ -9,7 +9,7 @@ export default function Tickets() {
 
   useEffect(() => {
     fetch(
-      `http://localhost:8000/api/v1/tickets/order-tickets/get-order-history`,
+      `https://www.tickets-api.cloud.com.ge/api/v1/tickets/order-tickets/get-order-history`,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -19,7 +19,7 @@ export default function Tickets() {
       .then((response) => response.json())
       .then((response) => {
         if (response.error) {
-          alert(response.error);
+          // alert(response.error);
         }
         setOrders(response);
       });
@@ -32,7 +32,7 @@ export default function Tickets() {
       </Head>
       <Header />
       <div className="container">
-        <Item orders={orders} />
+        {orders.length !== 0 && <Item orders={orders} />}
       </div>
     </div>
   );

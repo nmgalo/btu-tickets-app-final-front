@@ -16,7 +16,7 @@ export default function chooseSeat({ seatData }) {
 
 export async function getServerSideProps({ params }) {
   const res = await fetch(
-    `http://localhost:8000/api/v1/tickets/ordet/seat/${params.seatHashId}`
+    `https://www.tickets-api.cloud.com.ge/api/v1/tickets/ordet/seat/${params.seatHashId}`
   );
   const seatData = await res.json();
   return {

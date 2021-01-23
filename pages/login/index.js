@@ -13,10 +13,13 @@ export default function Login() {
     form.append("email", email);
     form.append("password", password);
 
-    const response = await fetch(`http://localhost:8000/api/passenger/login`, {
-      method: "POST",
-      body: form,
-    })
+    const response = await fetch(
+      `https://www.tickets-api.cloud.com.ge/api/passenger/login`,
+      {
+        method: "POST",
+        body: form,
+      }
+    )
       .then((response) => response.json())
       .then((response) => {
         if (response.token) {
@@ -26,8 +29,6 @@ export default function Login() {
           alert(response.error);
         }
       });
-
-    console.log(response);
   }
 
   return (
@@ -64,11 +65,34 @@ export default function Login() {
             justify-content: center;
             min-height: calc(100vh - 82px);
           }
+          h1 {
+            padding: 0;
+            margin: 0;
+          }
           form {
             width: 350px;
-            background: #ddd;
-            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            padding: 25px;
+            margin: 80px 0;
             box-sizing: border-box;
+          }
+          form > div {
+            margin: 15px 0;
+          }
+          form > div > input {
+            width: 100%;
+            outline: 0;
+            border: 0.5px solid #ddd;
+            padding: 10px;
+            border-radius: 2px;
+          }
+          form > div > button {
+            width: 100%;
+            height: 40px;
+            border-radius: 2px;
+            outline: 0;
+            cursor: pointer;
+            border: 0.2px solid #ddd;
           }
         `}</style>
       </div>

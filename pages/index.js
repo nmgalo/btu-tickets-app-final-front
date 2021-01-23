@@ -1,9 +1,22 @@
+import { useEffect, useState } from "react";
 import Head from "next/head";
 
 import Header from "../components/Header";
 import TimeTable from "../components/timetable/TimeTable";
 
-export default function Home({ table }) {
+export default function Home() {
+  const [table, setTable] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      "https://www.tickets-api.cloud.com.ge/api/v1/tickets/stations/timetable"
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        setTable(response);
+      });
+  }, []);
+
   return (
     <div>
       <Head>
@@ -26,16 +39,4 @@ export default function Home({ table }) {
       </div>
     </div>
   );
-}
-
-export async function getStaticProps() {
-  const res = await fetch(
-    `http://localhost:8000/api/v1/tickets/stations/timetable`
-  );
-  const table = await res.json();
-  return {
-    props: {
-      table,
-    },
-  };
 }
