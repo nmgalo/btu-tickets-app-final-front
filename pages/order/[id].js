@@ -2,12 +2,17 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import Header from "../../components/Header";
 
-export default function OrderId() {
-  const [ticketData, setTicketData] = useState([]);
+export default function OrderId({ orderId }) {
+  const [ticketData, setTicketData] = useState({
+    seatsData: [{ isAvailable: false, location: [1, 1], locationHashId: "" }],
+    trainSeatsDimension: [1, 1],
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://www.tickets-api.cloud.com.ge/api/v1/tickets/order/1`)
+    fetch(
+      `https://www.tickets-api.cloud.com.ge/api/v1/tickets/order/${orderId}`
+    )
       .then((response) => response.json())
       .then((response) => {
         setLoading(false);
@@ -38,7 +43,15 @@ export default function OrderId() {
                   {[...Array(ticketData.trainSeatsDimension[1])].map(
                     (_, column_index) => (
                       <td
-                        onClick={() => (window.location.href = "/order/seat/")}
+                        onClick={() =>
+                          (window.location.href =
+                            "/order/seat/" +
+                            ticketData.seatsData.find(
+                              (item) =>
+                                item.location[0] === index + 1 &&
+                                item.location[1] === column_index + 1
+                            ).locationHashId)
+                        }
                       >
                         <button
                           disabled={
@@ -92,4 +105,20 @@ export default function OrderId() {
       `}</style>
     </div>
   );
+}
+
+export async function getStaticProps({ params }) {
+  const orderId = params.id;
+  return {
+    props: {
+      orderId,
+    },
+  };
+}
+
+export async function getStaticPaths({ param }) {
+  return {
+    paths: ["/order/[id]", { params: { id: "1" } }],
+    fallback: true,
+  };
 }
