@@ -29,7 +29,6 @@ function TimeTable(props) {
           box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
           color: #000;
           border-radius: 8px;
-          margin-bottom: 20px;
         }
         .timeTableContainer a {
           color: green;
